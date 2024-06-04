@@ -3,30 +3,6 @@ GO
 USE BDSISTEMADEVENTA
 GO
 
-CREATE TABLE Usuarios (
-    IDUsuario INT PRIMARY KEY IDENTITY(1,1),
-    NombreUsuario VARCHAR(255) NOT NULL,
-    HashContraseña VARCHAR(255) NOT NULL,
-    CorreoElectronico VARCHAR(255) NOT NULL,
-    FechaCreacion DATETIME DEFAULT GETDATE()
-)
-GO
-
-<<<<<<< HEAD
-CREATE TABLE Roles (
-    IDRol INT PRIMARY KEY IDENTITY(1,1),
-    NombreRol VARCHAR(255) NOT NULL
-)
-GO
-
-CREATE TABLE RolesUsuarios (
-    IDRolUsuario INT PRIMARY KEY IDENTITY(1,1),
-    IDUsuario INT,
-    IDRol INT,
-    FOREIGN KEY (IDUsuario) REFERENCES Usuarios(IDUsuario),
-    FOREIGN KEY (IDRol) REFERENCES Roles(IDRol)
-)
-GO
 
 CREATE TABLE Productos (
     IDProducto INT PRIMARY KEY IDENTITY(1,1),
@@ -232,23 +208,6 @@ CREATE TABLE ArticulosDevolucion (
 )
 GO
 
-CREATE TABLE Carrito (
-    IDCarrito INT PRIMARY KEY IDENTITY(1,1),
-    IDUsuario INT,
-    FechaCreacion DATETIME DEFAULT GETDATE(),
-    FOREIGN KEY (IDUsuario) REFERENCES Usuarios(IDUsuario)
-)
-GO
-
-CREATE TABLE ArticulosCarrito (
-    IDArticuloCarrito INT PRIMARY KEY IDENTITY(1,1),
-    IDCarrito INT,
-    IDProducto INT,
-    Cantidad INT,
-    FOREIGN KEY (IDCarrito) REFERENCES Carrito(IDCarrito),
-    FOREIGN KEY (IDProducto) REFERENCES Productos(IDProducto)
-)
-GO
 
 CREATE TABLE EtiquetasProducto (
     IDEtiqueta INT PRIMARY KEY IDENTITY(1,1),
@@ -265,14 +224,6 @@ CREATE TABLE MapeoEtiquetasProducto (
 )
 GO
 
-CREATE TABLE Logs (
-    IDLog INT PRIMARY KEY IDENTITY(1,1),
-    IDUsuario INT,
-    Accion VARCHAR(255),
-    FechaHora DATETIME DEFAULT GETDATE(),
-    FOREIGN KEY (IDUsuario) REFERENCES Usuarios(IDUsuario)
-)
-GO
 
 --ALTERAMOS LA TABLA PROVEEDOR YA QUE FALTÓ RELACIONAR CON PRODUCTO
 ALTER TABLE Productos
